@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>PDF Chatbot</h1>
+        <form method="post">
+            <input type="text" name="query" placeholder="Type your question here" required>
+            <button type="submit">Ask</button>
+        </form>
+
+        {% if response_text %}
+            <div class="response">
+                <h2>Response:</h2>
+                <p>{{ response_text }}</p>
+                {% for img in response_images %}
+                    <img src="{{ img }}" width="200" height="200">
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-result">No relevant information found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
